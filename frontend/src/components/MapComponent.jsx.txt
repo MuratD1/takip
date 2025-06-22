@@ -1,0 +1,41 @@
+import React, { useEffect, useRef, useState } from 'react';
+import mapboxgl from 'mapbox-gl';
+import { io } from 'socket.io-client';
+
+const MapComponent = () => {
+  const mapRef = useRef();
+  const [trucks, setTrucks] = useState([]);
+  const socket = useRef(null);
+
+  useEffect(() => {
+    // Connect to WebSocket
+    socket.current = io(process.env.REACT_APP_BACKEND_URL);
+    socket.current.on('truckUpdate', (data) => setTrucks(data));
+
+    // Initialize map
+    const map = new mapboxgl.Map({
+      container: mapRef.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [28.9784, 41.0082], // Istanbul
+      zoom: 12
+    });
+
+    // Add navigation controls
+    map.addControl(new mapboxgl.NavigationControl());
+
+    return () => {
+      map.remove();
+      socket.current.disconnect();
+    };
+  }, []);
+
+  // Update map when trucks change
+  useEffect(() => {
+    if (!mapRef.current) return;
+    // ... (code to update markers/routes - see previous examples)
+  }, [trucks]);
+
+  return <div ref={mapRef} style={{ height: '600px', width: '100%' }} />;
+};
+
+export default MapComponent;

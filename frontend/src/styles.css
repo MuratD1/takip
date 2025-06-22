@@ -1,0 +1,52 @@
+.metrics-panel {
+  padding: 20px;
+  background: #f8f9fa;
+  border-left: 1px solid #ddd;
+  height: 100vh;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.status-moving_to_vehicle {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.status-loading {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.metric-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+}
+
+.metric-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #4287f5;
+}
+
+.route-details {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+}
